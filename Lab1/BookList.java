@@ -32,7 +32,7 @@ class BookList {
         if ((index < books.size()) && (index >= 0)) {
             return books.get(index);
         } else {
-            throw new ArrayIndexOutOfBoundsException("Out of bounds");
+            throw new ArrayIndexOutOfBoundsException("Index is out of bounds");
         }
     }
 
@@ -42,7 +42,7 @@ class BookList {
                 books.set(index, book);
             }
         } else {
-            throw new ArrayIndexOutOfBoundsException("Out of bounds");
+            throw new ArrayIndexOutOfBoundsException("Index is out of bounds");
         }
     }
 
@@ -50,7 +50,7 @@ class BookList {
         if ((index < books.size()) && (index >= 0)) {
             books.remove(index);
         } else {
-            throw new ArrayIndexOutOfBoundsException("Out of bounds");
+            throw new ArrayIndexOutOfBoundsException("Index is out of bounds");
         }
     }
 
