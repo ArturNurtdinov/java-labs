@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public interface TaskContract {
     interface Task1{
         int[][] createMatrix(int n, int m);
@@ -10,13 +12,7 @@ public interface TaskContract {
     }
 
     interface Task3{
-        void printMenu();
-        Book readBook();
-        int readCode();
-        int readIndex();
-        int readNumber();
-        String readAuthor();
-        String readName();
-        int readReleaseDate();
+        void startMenu();
+        void startMenu(ArrayList<Book> bookArrayList);
     }
 }

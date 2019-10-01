@@ -1,23 +1,15 @@
 import java.util.ArrayList;
 
 class BookList {
-    BookList() {
-        this.create(0);
-    }
 
-    BookList(int size) {
-        this.create(size);
+    private ArrayList<Book> books;
+
+    BookList() {
+        books = new ArrayList<>();
     }
 
     BookList(ArrayList<Book> books) {
         this.books = books;
-    }
-
-    private void create(int size) {
-        books = new ArrayList<Book>();
-        for (int i = 0; i < size; ++i) {
-            books.add(new Book(i, "Author" + i, "Name" + i, 2000 + i));
-        }
     }
 
     void add(Book book) {
@@ -99,7 +91,4 @@ class BookList {
         }
         return res;
     }
-
-
-    private ArrayList<Book> books;
 }
