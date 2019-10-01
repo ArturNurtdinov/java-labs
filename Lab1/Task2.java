@@ -1,6 +1,6 @@
 import java.security.SecureRandom;
 
-public class Task2 implements TaskContract.Task2 {
+public final class Task2 implements TaskContract.Task2 {
     @Override
     public String[] splitAndReplace(String s) {
         String[] res = new String[s.length() / 3];

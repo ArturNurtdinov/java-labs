@@ -2,7 +2,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Task3 implements TaskContract.Task3 {
+public final class Task3 implements TaskContract.Task3 {
     private static Scanner scanner = new Scanner(new InputStreamReader(System.in));
 
     @Override
