@@ -1,3 +1,7 @@
+package tasks;
+
+import contracts.TaskContract;
+
 import java.security.SecureRandom;
 
 public final class Task2 implements TaskContract.Task2 {

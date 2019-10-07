@@ -1,3 +1,7 @@
+package contracts;
+
+import data.Book;
+
 import java.util.ArrayList;
 
 public interface TaskContract {
@@ -12,7 +16,6 @@ public interface TaskContract {
     }
 
     interface Task3{
-        void startMenu();
-        void startMenu(ArrayList<Book> bookArrayList);
+        void startMenu() throws IllegalArgumentException;
     }
 }

@@ -1,3 +1,7 @@
+package tasks;
+
+import contracts.TaskContract;
+
 public final class Task1 implements TaskContract.Task1 {
     @Override
     public int[][] createMatrix(int n, int m) {

@@ -1,5 +1,7 @@
+package data;
+
 public class Book {
-    Book(int number, String author, String name, int releaseDate) {
+    public Book(int number, String author, String name, int releaseDate) {
         this.number = number;
         this.author = author;
         this.name = name;
@@ -8,7 +10,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book: " + number + " " + author + " " + name + " " + releaseDate;
+        return "data.Book: " + number + " " + author + " " + name + " " + releaseDate;
     }
 
     int getNumber() {

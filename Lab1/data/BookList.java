@@ -1,18 +1,20 @@
+package data;
+
 import java.util.ArrayList;
 
-class BookList {
+public class BookList {
 
     private ArrayList<Book> books;
 
-    BookList() {
+    public BookList() {
         books = new ArrayList<>();
     }
 
-    BookList(ArrayList<Book> books) {
+    public BookList(ArrayList<Book> books) {
         this.books = books;
     }
 
-    void add(Book book) {
+    public void add(Book book) {
         if (book != null) {
             books.add(book);
         } else {
@@ -20,7 +22,7 @@ class BookList {
         }
     }
 
-    Book getByIndex(int index) {
+    public Book getByIndex(int index) {
         if ((index < books.size()) && (index >= 0)) {
             return books.get(index);
         } else {
@@ -28,7 +30,7 @@ class BookList {
         }
     }
 
-    void update(int index, Book book) {
+    public void update(int index, Book book) {
         if ((index < books.size()) && (index >= 0)) {
             if (book != null) {
                 books.set(index, book);
@@ -38,7 +40,7 @@ class BookList {
         }
     }
 
-    void delete(int index) {
+    public void delete(int index) {
         if ((index < books.size()) && (index >= 0)) {
             books.remove(index);
         } else {
@@ -46,13 +48,13 @@ class BookList {
         }
     }
 
-    void printBooks() {
+    public void printBooks() {
         for (Book book : books) {
             System.out.println(book);
         }
     }
 
-    ArrayList<Book> getByNumber(int number) {
+    public ArrayList<Book> getByNumber(int number) {
         ArrayList<Book> res = new ArrayList<>();
         for (Book book : books) {
             if (book.getNumber() == number) {
@@ -62,7 +64,7 @@ class BookList {
         return res;
     }
 
-    ArrayList<Book> getByAuthor(String author) {
+    public ArrayList<Book> getByAuthor(String author) {
         ArrayList<Book> res = new ArrayList<>();
         for (Book book : books) {
             if (book.getAuthor().equals(author)) {
@@ -72,7 +74,7 @@ class BookList {
         return res;
     }
 
-    ArrayList<Book> getByName(String name) {
+    public ArrayList<Book> getByName(String name) {
         ArrayList<Book> res = new ArrayList<>();
         for (Book book : books) {
             if (book.getName().equals(name)) {
@@ -82,7 +84,7 @@ class BookList {
         return res;
     }
 
-    ArrayList<Book> getByReleaseDate(int releaseDate) {
+    public ArrayList<Book> getByReleaseDate(int releaseDate) {
         ArrayList<Book> res = new ArrayList<>();
         for (Book book : books) {
             if (book.getReleaseDate() == releaseDate) {

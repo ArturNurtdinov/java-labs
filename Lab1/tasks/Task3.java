@@ -1,12 +1,17 @@
+package tasks;
+
+import contracts.TaskContract;
+import data.Book;
+import data.BookList;
+
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public final class Task3 implements TaskContract.Task3 {
     private static Scanner scanner = new Scanner(new InputStreamReader(System.in));
 
     @Override
-    public void startMenu(ArrayList<Book> bookArrayList) {
+    public void startMenu() {
         System.out.println("Type 1 to add book");
         System.out.println("Type 2 to delete book by index");
         System.out.println("Type 3 to find books by number");
@@ -16,7 +21,7 @@ public final class Task3 implements TaskContract.Task3 {
         System.out.println("Type 7 to update book");
         System.out.println("Type 8 to read book by index");
         System.out.println("Type 9 to print all books");
-        BookList books = new BookList(bookArrayList);
+        BookList books = new BookList();
         while (true) {
             int code = this.readCode();
             switch (code) {
@@ -72,11 +77,6 @@ public final class Task3 implements TaskContract.Task3 {
                     throw new IllegalArgumentException("Unknown code");
             }
         }
-    }
-
-    @Override
-    public void startMenu() {
-        startMenu(new ArrayList<>());
     }
 
     private Book readBook() {
