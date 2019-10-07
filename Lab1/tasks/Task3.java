@@ -11,7 +11,7 @@ public final class Task3 implements TaskContract.Task3 {
     private static Scanner scanner = new Scanner(new InputStreamReader(System.in));
 
     @Override
-    public void startMenu() {
+    public void startMenu() throws IllegalArgumentException {
         System.out.println("Type 1 to add book");
         System.out.println("Type 2 to delete book by index");
         System.out.println("Type 3 to find books by number");
