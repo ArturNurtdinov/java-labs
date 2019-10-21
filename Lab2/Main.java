@@ -3,7 +3,7 @@ import animals.*;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.function.Function;
+import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,25 +17,16 @@ public class Main {
         sortList(list);
         try {
             // First five elements of sorted list
-            applyOnRange(list, 0, list.size(), animal -> {
-                System.out.println(animal);
-                return null;
-            });
+            acceptOnRange(list, 0, list.size(), System.out::println);
             // Last three uid of sorted list
-            applyOnRange(list, list.size() - 3, list.size(), animal -> {
-                System.out.println(animal.getUid());
-                return null;
-            });
+            acceptOnRange(list, list.size() - 3, list.size(), animal -> System.out.println(animal.getUid()));
 
             //writing to file
             writeToFile(list, "animals.tmp");
 
             //reading from file and printing result
             LinkedList<Animal> readList = new LinkedList<>(readFromFile("animals.tmp"));
-            applyOnRange(readList, 0, readList.size(), animal -> {
-                System.out.println(animal);
-                return null;
-            });
+            acceptOnRange(readList, 0, readList.size(), System.out::println);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -50,8 +41,8 @@ public class Main {
         });
     }
 
-    private static void applyOnRange(List<Animal> list, int rangeFrom, int rangeTo,
-                                     Function<Animal, Void> function) throws IndexOutOfBoundsException {
+    private static void acceptOnRange(List<Animal> list, int rangeFrom, int rangeTo,
+                                      Consumer<Animal> function) throws IndexOutOfBoundsException {
         if ((rangeFrom < 0) || (rangeTo > list.size())) {
             throw new IndexOutOfBoundsException("Range is out of bounds");
         }
@@ -61,7 +52,7 @@ public class Main {
         }
 
         for (int i = rangeFrom; i < rangeTo; i++) {
-            function.apply(list.get(i));
+            function.accept(list.get(i));
         }
     }
 
