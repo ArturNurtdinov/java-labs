@@ -1,13 +1,13 @@
 import animals.*;
 
 import java.io.*;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 public class Main {
     public static void main(String[] args) {
-        LinkedList<Animal> list = new LinkedList<>();
+        ArrayList<Animal> list = new ArrayList<>();
         list.add(new Carnivore("Wolf"));
         list.add(new Herbivore("Chicken"));
         list.add(new Omnivore("Human"));
@@ -25,7 +25,7 @@ public class Main {
             writeToFile(list, "animals.tmp");
 
             //reading from file and printing result
-            LinkedList<Animal> readList = new LinkedList<>(readFromFile("animals.tmp"));
+            ArrayList<Animal> readList = new ArrayList<>(readFromFile("animals.tmp"));
             acceptOnRange(readList, 0, readList.size(), System.out::println);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -42,7 +42,7 @@ public class Main {
     }
 
     private static void acceptOnRange(List<Animal> list, int rangeFrom, int rangeTo,
-                                      Consumer<Animal> function) throws IndexOutOfBoundsException {
+                                      Consumer<Animal> consumer) throws IndexOutOfBoundsException {
         if ((rangeFrom < 0) || (rangeTo > list.size())) {
             throw new IndexOutOfBoundsException("Range is out of bounds");
         }
@@ -52,7 +52,7 @@ public class Main {
         }
 
         for (int i = rangeFrom; i < rangeTo; i++) {
-            function.accept(list.get(i));
+            consumer.accept(list.get(i));
         }
     }
 
