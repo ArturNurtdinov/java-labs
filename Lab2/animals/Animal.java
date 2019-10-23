@@ -5,7 +5,16 @@ import java.io.Serializable;
 public abstract class Animal implements Serializable {
     String uid;
     String name;
-    int foodAmount;
+    private int foodAmount;
+
+    Animal() {
+        foodAmount = -1;
+    }
+
+    @Override
+    public String toString() {
+        return "UID = " + uid + ", name = " + name + ", type = " + getClass().getSimpleName() + ", food = " + foodAmount;
+    }
 
     abstract int calculateFoodAmount();
 
@@ -19,10 +28,5 @@ public abstract class Animal implements Serializable {
 
     public String getUid() {
         return uid;
-    }
-
-    @Override
-    public String toString() {
-        return "UID = " + uid + ", name = " + name + ", type = " + getClass().getSimpleName() + ", food = " + foodAmount;
     }
 }
