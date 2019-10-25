@@ -11,13 +11,23 @@ public abstract class Animal implements Serializable {
     Animal(String name) {
         this.name = name;
         uid = UUID.randomUUID().toString();
-        food = new Food();
     }
 
     Animal(String name, String uid) {
         this.name = name;
         this.uid = uid;
-        food = new Food();
+    }
+
+    Animal(String name, String foodType, int foodAmount) {
+        this.name = name;
+        uid = UUID.randomUUID().toString();
+        food = new Food(foodType, foodAmount);
+    }
+
+    Animal(String name, String uid, String foodType, int foodAmount) {
+        this.name = name;
+        this.uid = uid;
+        food = new Food(foodType, foodAmount);
     }
 
     @Override
@@ -32,10 +42,7 @@ public abstract class Animal implements Serializable {
     }
 
     public Food getFood() {
-        if ((food.amount == -1) || (food.type.isEmpty())) {
-            food = calculateFood();
-        }
-        return food;
+        return food == null ? food = calculateFood() : food;
     }
 
     public String getUid() {
@@ -46,11 +53,6 @@ public abstract class Animal implements Serializable {
     public static class Food implements Serializable {
         private String type;
         private int amount;
-
-        private Food() {
-            amount = -1;
-            type = "";
-        }
 
         Food(String type, int amount) {
             this.amount = amount;

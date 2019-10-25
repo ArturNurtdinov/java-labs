@@ -9,8 +9,16 @@ public class Omnivore extends Animal {
         super(name, uid);
     }
 
+    public Omnivore(String name, String foodType, int foodAmount) {
+        super(name, foodType, foodAmount);
+    }
+
+    public Omnivore(String name, String uid, String foodType, int foodAmount) {
+        super(name, uid, foodType, foodAmount);
+    }
+
     @Override
     Food calculateFood() {
-        return new Food("OMNI", 500);
+        return new Food("ANY", 500);
     }
 }

@@ -9,8 +9,16 @@ public class Carnivore extends Animal {
         super(name, uid);
     }
 
+    public Carnivore(String name, String foodType, int foodAmount) {
+        super(name, foodType, foodAmount);
+    }
+
+    public Carnivore(String name, String uid, String foodType, int foodAmount) {
+        super(name, uid, foodType, foodAmount);
+    }
+
     @Override
     Food calculateFood() {
-        return new Food("CARNI", 1000);
+        return new Food("MEAT", 1000);
     }
 }

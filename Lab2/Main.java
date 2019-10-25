@@ -12,7 +12,7 @@ public class Main {
         list.add(new Herbivore("Chicken"));
         list.add(new Omnivore("Human"));
         list.add(new Herbivore("bark"));
-        list.add(new Herbivore("Animal"));
+        list.add(new Herbivore("Romashkoed", "ROMASHKA", 500));
 
         sortList(list);
         try {
@@ -37,7 +37,7 @@ public class Main {
             if (o1.getFood().getAmount() != o2.getFood().getAmount()) {
                 return o1.getFood().getAmount() - o2.getFood().getAmount();
             }
-            return o1.getName().toUpperCase().charAt(0) - o2.getName().toUpperCase().charAt(0);
+            return o1.getName().toLowerCase().compareTo(o2.getName().toLowerCase());
         });
     }
 
