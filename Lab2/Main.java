@@ -2,6 +2,7 @@ import animals.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -14,7 +15,10 @@ public class Main {
         list.add(new Herbivore("bark"));
         list.add(new Herbivore("Romashkoed", "ROMASHKA", 500));
 
-        sortList(list);
+        //sorting list
+        list.sort((o1, o2) -> o1.getFood().getAmount() != o2.getFood().getAmount() ?
+                o1.getFood().getAmount() - o2.getFood().getAmount() :
+                o1.getName().toLowerCase().compareTo(o2.getName().toLowerCase()));
         try {
             // First five elements of sorted list
             acceptOnRange(list, 0, 5, System.out::println);
@@ -30,15 +34,6 @@ public class Main {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }
-
-    private static void sortList(List<Animal> list) {
-        list.sort((o1, o2) -> {
-            if (o1.getFood().getAmount() != o2.getFood().getAmount()) {
-                return o1.getFood().getAmount() - o2.getFood().getAmount();
-            }
-            return o1.getName().toLowerCase().compareTo(o2.getName().toLowerCase());
-        });
     }
 
     private static void acceptOnRange(List<Animal> list, int rangeFrom, int rangeTo,
