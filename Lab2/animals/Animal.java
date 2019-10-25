@@ -19,7 +19,7 @@ public abstract class Animal implements Serializable {
         return "UID = " + uid + ", name = " + name + ", type = " + getClass().getSimpleName() + ", food : " + food;
     }
 
-    abstract Food calculateFoodAmount();
+    abstract Food calculateFood();
 
     public String getName() {
         return name;
@@ -27,7 +27,7 @@ public abstract class Animal implements Serializable {
 
     public Food getFood() {
         if ((food.amount == -1) || (food.type.isEmpty())) {
-            food = calculateFoodAmount();
+            food = calculateFood();
         }
         return food;
     }
