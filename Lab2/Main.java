@@ -42,7 +42,7 @@ public class Main {
     }
 
     private static void acceptOnRange(List<Animal> list, int rangeFrom, int rangeTo,
-                                      Consumer<Animal> consumer) throws IndexOutOfBoundsException {
+                                      Consumer<Animal> consumer) {
         if ((rangeFrom < 0) || (rangeTo > list.size())) {
             throw new IndexOutOfBoundsException("Range is out of bounds");
         }
