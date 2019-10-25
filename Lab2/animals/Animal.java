@@ -19,12 +19,18 @@ public abstract class Animal implements Serializable {
     }
 
     Animal(String name, String foodType, int foodAmount) {
+        if (foodAmount < 0) {
+            throw new IllegalArgumentException("Food amount must be > 0");
+        }
         this.name = name;
         uid = UUID.randomUUID().toString();
         food = new Food(foodType, foodAmount);
     }
 
     Animal(String name, String uid, String foodType, int foodAmount) {
+        if (foodAmount < 0) {
+            throw new IllegalArgumentException("Food amount must be > 0");
+        }
         this.name = name;
         this.uid = uid;
         food = new Food(foodType, foodAmount);
