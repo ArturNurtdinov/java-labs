@@ -38,7 +38,7 @@ public abstract class Animal implements Serializable {
 
     @Override
     public String toString() {
-        return "UID = " + uid + ", name = " + name + ", type = " + getClass().getSimpleName() + ", food : " + food;
+        return "UID = " + getUid() + ", name = " + getName() + ", type = " + getClass().getSimpleName() + ", food : " + getFood();
     }
 
     abstract Food calculateFood();
@@ -67,7 +67,7 @@ public abstract class Animal implements Serializable {
 
         @Override
         public String toString() {
-            return "Type of food = " + type + ", amount = " + amount;
+            return "Type of food = " + getType() + ", amount = " + getAmount();
         }
 
         public int getAmount() {
