@@ -14,6 +14,12 @@ public abstract class Animal implements Serializable {
         food = new Food();
     }
 
+    Animal(String name, String uid) {
+        this.name = name;
+        this.uid = uid;
+        food = new Food();
+    }
+
     @Override
     public String toString() {
         return "UID = " + uid + ", name = " + name + ", type = " + getClass().getSimpleName() + ", food : " + food;

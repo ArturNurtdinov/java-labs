@@ -5,6 +5,10 @@ public class Herbivore extends Animal {
         super(name);
     }
 
+    public Herbivore(String name, String uid) {
+        super(name, uid);
+    }
+
     @Override
     Food calculateFood() {
         return new Food("HERB", 100);

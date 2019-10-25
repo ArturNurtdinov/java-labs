@@ -5,6 +5,10 @@ public class Omnivore extends Animal {
         super(name);
     }
 
+    public Omnivore(String name, String uid) {
+        super(name, uid);
+    }
+
     @Override
     Food calculateFood() {
         return new Food("OMNI", 500);

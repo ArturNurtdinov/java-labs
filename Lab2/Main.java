@@ -17,7 +17,7 @@ public class Main {
         sortList(list);
         try {
             // First five elements of sorted list
-            acceptOnRange(list, 0, list.size(), System.out::println);
+            acceptOnRange(list, 0, 5, System.out::println);
             // Last three uid of sorted list
             acceptOnRange(list, list.size() - 3, list.size(), animal -> System.out.println(animal.getUid()));
 
