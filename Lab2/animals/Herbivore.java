@@ -6,7 +6,7 @@ public class Herbivore extends Animal {
     }
 
     @Override
-    int calculateFoodAmount() {
-        return 100;
+    Food calculateFoodAmount() {
+        return new Food("HERB", 100);
     }
 }

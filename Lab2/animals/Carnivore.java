@@ -6,7 +6,7 @@ public class Carnivore extends Animal {
     }
 
     @Override
-    int calculateFoodAmount() {
-        return 1000;
+    Food calculateFoodAmount() {
+        return new Food("CARNI", 1000);
     }
 }

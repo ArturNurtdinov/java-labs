@@ -6,7 +6,7 @@ public class Omnivore extends Animal {
     }
 
     @Override
-    int calculateFoodAmount() {
-        return 500;
+    Food calculateFoodAmount() {
+        return new Food("OMNI", 500);
     }
 }

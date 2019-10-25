@@ -34,8 +34,8 @@ public class Main {
 
     private static void sortList(List<Animal> list) {
         list.sort((o1, o2) -> {
-            if (o1.getFoodAmount() != o2.getFoodAmount()) {
-                return o1.getFoodAmount() - o2.getFoodAmount();
+            if (o1.getFood().getAmount() != o2.getFood().getAmount()) {
+                return o1.getFood().getAmount() - o2.getFood().getAmount();
             }
             return o1.getName().toUpperCase().charAt(0) - o2.getName().toUpperCase().charAt(0);
         });
