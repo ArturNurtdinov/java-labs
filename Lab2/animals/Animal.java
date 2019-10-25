@@ -9,8 +9,7 @@ public abstract class Animal implements Serializable {
     private Food food;
 
     Animal(String name) {
-        this.name = name;
-        uid = UUID.randomUUID().toString();
+        this(name, UUID.randomUUID().toString());
     }
 
     Animal(String name, String uid) {
@@ -19,12 +18,7 @@ public abstract class Animal implements Serializable {
     }
 
     Animal(String name, String foodType, int foodAmount) {
-        if (foodAmount < 0) {
-            throw new IllegalArgumentException("Food amount must be > 0");
-        }
-        this.name = name;
-        uid = UUID.randomUUID().toString();
-        food = new Food(foodType, foodAmount);
+        this(name, UUID.randomUUID().toString(), foodType, foodAmount);
     }
 
     Animal(String name, String uid, String foodType, int foodAmount) {

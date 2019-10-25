@@ -20,23 +20,23 @@ public class Main {
                 o1.getName().toLowerCase().compareTo(o2.getName().toLowerCase()));
         try {
             // First five elements of sorted list
-            acceptOnRange(list, 0, 5, System.out::println);
+            applyOnRange(list, 0, 5, System.out::println);
             // Last three uid of sorted list
-            acceptOnRange(list, list.size() - 3, list.size(), animal -> System.out.println(animal.getUid()));
+            applyOnRange(list, list.size() - 3, list.size(), animal -> System.out.println(animal.getUid()));
 
             //writing to file
             writeToFile(list, "animals.tmp");
 
             //reading from file and printing result
             ArrayList<Animal> readList = new ArrayList<>(readFromFile("animals.tmp"));
-            acceptOnRange(readList, 0, readList.size(), System.out::println);
+            applyOnRange(readList, 0, readList.size(), System.out::println);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    private static void acceptOnRange(List<Animal> list, int rangeFrom, int rangeTo,
-                                      Consumer<Animal> consumer) {
+    private static void applyOnRange(List<Animal> list, int rangeFrom, int rangeTo,
+                                     Consumer<Animal> consumer) {
         if ((rangeFrom < 0) || (rangeTo > list.size())) {
             throw new IndexOutOfBoundsException("Range is out of bounds");
         }
