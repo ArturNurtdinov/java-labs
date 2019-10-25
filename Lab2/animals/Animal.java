@@ -1,13 +1,16 @@
 package animals;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 public abstract class Animal implements Serializable {
-    String uid;
-    String name;
+    private String uid;
+    private String name;
     private int foodAmount;
 
-    Animal() {
+    Animal(String name) {
+        this.name = name;
+        uid = UUID.randomUUID().toString();
         foodAmount = -1;
     }
 
