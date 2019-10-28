@@ -5,11 +5,11 @@ public class Main {
         sb.append(500);
         sb.append("dasd");
         sb.insert(0, 5123.33);
-        System.out.println(sb.toString());
+        System.out.println(sb.length()); //19
         sb.undo();
-        System.out.println(sb.toString());
+        System.out.println(sb.length()); //12
         sb.undo();
-        System.out.println(sb.toString());
+        System.out.println(sb.length()); //8
 
         sb.deleteCharAt(4);
         System.out.println(sb.toString());
