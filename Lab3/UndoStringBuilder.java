@@ -1,8 +1,8 @@
 import java.util.Stack;
 
 public class UndoStringBuilder {
-    private static Stack<String> stack = new Stack<>();
-    private static StringBuilder sb;
+    private Stack<String> stack = new Stack<>();
+    private StringBuilder sb;
 
     public UndoStringBuilder() {
         sb = new StringBuilder();
