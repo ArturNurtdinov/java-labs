@@ -10,8 +10,9 @@ public class Main {
         System.out.println(sb.length()); //12
         sb.undo();
         System.out.println(sb.length()); //8
+        sb.undo();
 
-        sb.deleteCharAt(4);
+        sb.deleteCharAt(2);
         System.out.println(sb.toString());
         sb.undo();
         System.out.println(sb.toString());
@@ -28,6 +29,51 @@ public class Main {
 
 
         sb.reverse();
+        System.out.println(sb.toString());
+        sb.undo();
+        System.out.println(sb.toString());
+
+        sb.insert(1, "333", 0, 3);
+        System.out.println(sb.toString());
+        sb.undo();
+        System.out.println(sb.toString());
+
+        sb.append("DSADASD");
+        System.out.println(sb.toString());
+        sb.undo();
+        System.out.println(sb.toString());
+
+        sb.replace(0, 2, "ARTTTT");
+        System.out.println(sb.toString());
+        sb.undo();
+        System.out.println(sb.toString());
+
+        sb.setCharAt(4, 'J');
+        System.out.println(sb.toString());
+        sb.undo();
+        System.out.println(sb.toString());
+
+        sb.insert(4, 123456789);
+        System.out.println(sb.toString());
+        sb.undo();
+        System.out.println(sb.toString());
+
+        sb.append(3231231);
+        System.out.println(sb.toString());
+        sb.undo();
+        System.out.println(sb.toString());
+
+        sb.insert(3, "asd");
+        System.out.println(sb.toString());
+        sb.undo();
+        System.out.println(sb.toString());
+
+        sb.append(32312.3323);
+        System.out.println(sb.toString());
+        sb.undo();
+        System.out.println(sb.toString());
+
+        sb.insert(2, 33231.222);
         System.out.println(sb.toString());
         sb.undo();
         System.out.println(sb.toString());

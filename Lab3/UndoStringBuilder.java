@@ -1,7 +1,8 @@
 import java.util.Stack;
+import java.util.function.Consumer;
 
 public class UndoStringBuilder {
-    private Stack<String> stack = new Stack<>();
+    private Stack<Consumer<StringBuilder>> stack = new Stack<>();
     private StringBuilder sb;
 
     public UndoStringBuilder() {
@@ -21,74 +22,98 @@ public class UndoStringBuilder {
     }
 
     public UndoStringBuilder append(boolean b) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(b);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder append(char c) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(c);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder append(char[] str) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(str);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder append(char[] str, int offset, int len) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(str, offset, len);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder append(double d) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(d);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder append(float f) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(f);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder append(int i) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(i);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder append(long l) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(l);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder append(Object obj) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(obj);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder append(String str) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(str);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder append(StringBuffer stringBuffer) {
-        stack.push(sb.toString());
+        int startIndex = sb.length();
         sb.append(stringBuffer);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
     public UndoStringBuilder appendCodePoint(int codePoint) {
-        stack.push(sb.toString());
-        sb.appendCodePoint(codePoint);
+        int startIndex = sb.length();
+        sb.append(codePoint);
+        int endIndex = sb.length();
+        stack.push(sb -> sb.delete(startIndex, endIndex));
         return this;
     }
 
@@ -113,20 +138,23 @@ public class UndoStringBuilder {
     }
 
     public UndoStringBuilder delete(int start, int end) {
-        stack.push(sb.toString());
+        String deleted = sb.substring(start, end);
         sb.delete(start, end);
+        stack.push(sb -> sb.insert(start, deleted));
         return this;
     }
 
     public UndoStringBuilder deleteCharAt(int index) {
-        stack.push(sb.toString());
+        char deleted = sb.charAt(index);
         sb.deleteCharAt(index);
+        stack.push(sb -> sb.insert(index, deleted));
         return this;
     }
 
     public void ensureCapacity(int minimumCapacity) {
-        stack.push(sb.toString());
+        int length = sb.length();
         sb.ensureCapacity(minimumCapacity);
+        stack.push(sb -> sb.setLength(length));
     }
 
     public void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) {
@@ -142,74 +170,84 @@ public class UndoStringBuilder {
     }
 
     public UndoStringBuilder insert(int offset, boolean b) {
-        stack.push(sb.toString());
         sb.insert(offset, b);
+        stack.push(sb -> sb.delete(offset, b ? 4 : 5));
         return this;
     }
 
     public UndoStringBuilder insert(int offset, char c) {
-        stack.push(sb.toString());
         sb.insert(offset, c);
+        stack.push(sb -> sb.delete(offset, 1));
         return this;
     }
 
     public UndoStringBuilder insert(int offset, char[] str) {
-        stack.push(sb.toString());
         sb.insert(offset, str);
+        stack.push(sb -> sb.delete(offset, offset + str.length));
         return this;
     }
 
     public UndoStringBuilder insert(int index, char[] str, int offset, int len) {
-        stack.push(sb.toString());
         sb.insert(index, str, offset, len);
+        stack.push(sb -> sb.delete(index, index + len - offset));
         return this;
     }
 
     public UndoStringBuilder insert(int dstOffset, CharSequence s) {
-        stack.push(sb.toString());
         sb.insert(dstOffset, s);
+        stack.push(sb -> sb.delete(dstOffset, dstOffset + s.length()));
         return this;
     }
 
     public UndoStringBuilder insert(int dstOffset, CharSequence s, int start, int end) {
-        stack.push(sb.toString());
         sb.insert(dstOffset, s, start, end);
+        stack.push(sb -> sb.delete(dstOffset, dstOffset + end - start));
         return this;
     }
 
     public UndoStringBuilder insert(int offset, double d) {
-        stack.push(sb.toString());
+        int oldLength = sb.length();
         sb.insert(offset, d);
+        int newLength = sb.length();
+        stack.push(sb -> sb.delete(offset, offset + newLength - oldLength));
         return this;
     }
 
     public UndoStringBuilder insert(int offset, float f) {
-        stack.push(sb.toString());
+        int oldLength = sb.length();
         sb.insert(offset, f);
+        int newLength = sb.length();
+        stack.push(sb -> sb.delete(offset, offset + newLength - oldLength));
         return this;
     }
 
     public UndoStringBuilder insert(int offset, int i) {
-        stack.push(sb.toString());
+        int oldLength = sb.length();
         sb.insert(offset, i);
+        int newLength = sb.length();
+        stack.push(sb -> sb.delete(offset, offset + newLength - oldLength));
         return this;
     }
 
     public UndoStringBuilder insert(int offset, long l) {
-        stack.push(sb.toString());
+        int oldLength = sb.length();
         sb.insert(offset, l);
+        int newLength = sb.length();
+        stack.push(sb -> sb.delete(offset, offset + newLength - oldLength));
         return this;
     }
 
     public UndoStringBuilder insert(int offset, Object obj) {
-        stack.push(sb.toString());
+        int oldLength = sb.length();
         sb.insert(offset, obj);
+        int newLength = sb.length();
+        stack.push(sb -> sb.delete(offset, offset + newLength - oldLength));
         return this;
     }
 
     public UndoStringBuilder insert(int offset, String str) {
-        stack.push(sb.toString());
         sb.insert(offset, str);
+        stack.push(sb -> sb.delete(offset, offset + str.length()));
         return this;
     }
 
@@ -230,25 +268,28 @@ public class UndoStringBuilder {
     }
 
     public UndoStringBuilder replace(int start, int end, String str) {
-        stack.push(sb.toString());
+        String old = sb.substring(start, end);
         sb.replace(start, end, str);
+        stack.push(sb -> sb.replace(start, start + str.length(), old));
         return this;
     }
 
     public UndoStringBuilder reverse() {
-        stack.push(sb.toString());
         sb.reverse();
+        stack.push(StringBuilder::reverse);
         return this;
     }
 
     public void setCharAt(int index, char ch) {
-        stack.push(sb.toString());
+        char old = sb.charAt(index);
         sb.setCharAt(index, ch);
+        stack.push(sb -> sb.setCharAt(index, old));
     }
 
     public void setLength(int newLength) {
-        stack.push(sb.toString());
+        int old = sb.length();
         sb.setLength(newLength);
+        stack.push(sb -> sb.setLength(old));
     }
 
     public CharSequence subSequence(int start, int end) {
@@ -268,13 +309,14 @@ public class UndoStringBuilder {
     }
 
     public void trimToSize() {
-        stack.push(sb.toString());
+        int old = sb.length();
         sb.trimToSize();
+        stack.push(sb -> sb.setLength(old));
     }
 
     public void undo() {
         if (!stack.isEmpty()) {
-            sb.replace(0, sb.length(), stack.pop());
+            stack.pop().accept(sb);
             return;
         }
         throw new NullPointerException("No changes to undo");
