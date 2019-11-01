@@ -152,9 +152,7 @@ public class UndoStringBuilder {
     }
 
     public void ensureCapacity(int minimumCapacity) {
-        int length = sb.length();
         sb.ensureCapacity(minimumCapacity);
-        stack.push(sb -> sb.setLength(length));
     }
 
     public void getChars(int srcBegin, int srcEnd, char[] dst, int dstBegin) {
@@ -308,7 +306,9 @@ public class UndoStringBuilder {
         return sb.toString();
     }
 
-    public void trimToSize() { sb.trimToSize(); }
+    public void trimToSize() {
+        sb.trimToSize();
+    }
 
     public void undo() {
         if (!stack.isEmpty()) {
