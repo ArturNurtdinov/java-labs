@@ -175,7 +175,7 @@ public class UndoStringBuilder {
 
     public UndoStringBuilder insert(int offset, char c) {
         sb.insert(offset, c);
-        stack.push(sb -> sb.delete(offset, 1));
+        stack.push(sb -> sb.delete(offset, offset + 1));
         return this;
     }
 

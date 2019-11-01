@@ -79,6 +79,11 @@ public class Main {
             sb.undo();
             System.out.println(sb.toString());
 
+            sb.insert(2, 'q');
+            System.out.println(sb.toString());
+            sb.undo();
+            System.out.println(sb.toString());
+
             //tests with big stack
             System.out.println("-----------------------------------------");
             sb = new UndoStringBuilder("Test");
