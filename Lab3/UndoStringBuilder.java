@@ -308,11 +308,7 @@ public class UndoStringBuilder {
         return sb.toString();
     }
 
-    public void trimToSize() {
-        int old = sb.length();
-        sb.trimToSize();
-        stack.push(sb -> sb.setLength(old));
-    }
+    public void trimToSize() { sb.trimToSize(); }
 
     public void undo() {
         if (!stack.isEmpty()) {
