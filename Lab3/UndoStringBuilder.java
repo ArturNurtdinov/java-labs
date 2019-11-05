@@ -310,10 +310,10 @@ public class UndoStringBuilder {
         sb.trimToSize();
     }
 
-    public void undo() {
+    public UndoStringBuilder undo() {
         if (!stack.isEmpty()) {
             stack.pop().accept(sb);
-            return;
+            return this;
         }
         throw new NullPointerException("No changes to undo");
     }
