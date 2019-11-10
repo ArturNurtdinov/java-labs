@@ -19,7 +19,7 @@ public class FileExplorer {
         put("delete", FileExplorer.this::deleteFile);
         put("append", FileExplorer.this::appendToFile);
         put("ls", FileExplorer.this::showAllFiles);
-        put("cat", FileExplorer.this::printTextFile);
+        put("read", FileExplorer.this::printTextFile);
     }};
 
     public FileExplorer() {
@@ -36,15 +36,15 @@ public class FileExplorer {
 
     public void start() {
         System.out.println("1. cd <folder_name> to go to folder");
-        System.out.println("2. create <file_name> to create text file. " +
+        System.out.println("2. create <file_name>.<file_type> to create file. " +
                 "After that you can input line to create file with it or leave this line empty");
-        System.out.println("3. delete <file_name> to delete text file.");
-        System.out.println("4. append <file_name> to start append mode to file. After that you can input line");
+        System.out.println("3. delete <file_name>.<file_type> to delete text file.");
+        System.out.println("4. append <file_name>.<file_type> to start append mode to file. After that you can input line");
         System.out.println("5. ls <folder_name> to get list of files in folder. " +
                 "<folder_name> can be empty, so you will get list of files in current directory");
-        System.out.println("6. cat <file_bane> to print content of file");
-        while (true) {
-            System.out.println(currentPath.toString());
+        System.out.println("6. read <file_name>.<file_type> to print content of file");
+        System.out.println(currentPath.toString());
+        while (scanner.hasNext()) {
             try {
                 String command = scanner.next();
                 functions.get(command).accept(scanner.nextLine().trim());
@@ -68,9 +68,11 @@ public class FileExplorer {
             } catch (IndexOutOfBoundsException ex) {
                 currentPath = new StringBuilder("");
             }
+            System.out.println(currentPath.toString());
         } else {
             if (new File(currentPath + path).isDirectory()) {
                 currentPath.append(path).append("\\");
+                System.out.println(currentPath.toString());
             } else {
                 throw new IllegalArgumentException("Is not a directory");
             }
@@ -78,7 +80,7 @@ public class FileExplorer {
     }
 
     private void createFile(String name) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(currentPath + name + ".txt", true))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(currentPath + name, true))) {
             writer.println(scanner.nextLine());
         } catch (IOException ex) {
             System.out.println("IO Error: " + ex.getMessage());
@@ -86,14 +88,14 @@ public class FileExplorer {
     }
 
     private void deleteFile(String name) {
-        File file = new File(currentPath.toString() + name + ".txt");
+        File file = new File(currentPath.toString() + name);
         if (!file.delete()) {
             throw new IllegalArgumentException("File was not deleted");
         }
     }
 
     private void appendToFile(String name) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(currentPath + name + ".txt", true))) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(currentPath + name, true))) {
             writer.print(scanner.nextLine());
         } catch (IOException ex) {
             System.out.println("IO Error: " + ex.getMessage());
@@ -114,7 +116,7 @@ public class FileExplorer {
     }
 
     private void printTextFile(String name) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(currentPath + name + ".txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(currentPath + name))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 System.out.println(line);
