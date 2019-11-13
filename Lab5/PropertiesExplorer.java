@@ -80,8 +80,6 @@ public class PropertiesExplorer {
     }
 
     private void readToMap() {
-        prop.keys().asIterator().forEachRemaining((it) -> {
-            content.put(it.toString(), prop.getProperty(it.toString()));
-        });
+        prop.keys().asIterator().forEachRemaining((it) -> content.put(it.toString(), prop.getProperty(it.toString())));
     }
 }
