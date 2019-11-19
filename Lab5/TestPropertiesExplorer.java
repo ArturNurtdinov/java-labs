@@ -7,8 +7,11 @@ import java.util.Properties;
 import java.util.Set;
 
 public class TestPropertiesExplorer {
+    private static final String testFile = "C:\\properties\\test.properties";
+    private static final String outputFile = "C:\\properties\\stored.properties";
+
     private void createProperties() {
-        try (OutputStream output = new FileOutputStream("C:\\properties\\test.properties")) {
+        try (OutputStream output = new FileOutputStream(testFile)) {
             Properties prop = new Properties();
             prop.setProperty("db.url", "localhost");
             prop.setProperty("db.user", "viruskuls");
@@ -25,7 +28,7 @@ public class TestPropertiesExplorer {
     public void testReading() {
         createProperties();
         try {
-            PropertiesExplorer explorer = new PropertiesExplorer("C:\\properties\\test.properties");
+            PropertiesExplorer explorer = new PropertiesExplorer(testFile);
             assert explorer.getContent().containsKey("db.url");
             assert explorer.getContent().containsKey("db.user");
             assert explorer.getContent().containsKey("db.password");
@@ -42,7 +45,7 @@ public class TestPropertiesExplorer {
     public void testMapChangedAndStore() {
         createProperties();
         try {
-            PropertiesExplorer explorer = new PropertiesExplorer("C:\\properties\\test.properties");
+            PropertiesExplorer explorer = new PropertiesExplorer(testFile);
             explorer.setProperty("db.state", "VALID");
             explorer.setProperty("db.maintainer", "Arthur");
             explorer.setProperty("db.size", "534");
@@ -51,8 +54,8 @@ public class TestPropertiesExplorer {
             assert explorer.getContent().get("db.maintainer").equals("Arthur");
             assert explorer.getContent().get("db.size").equals("534");
 
-            explorer.store(new FileOutputStream("C:\\properties\\stored.properties"), null);
-            PropertiesExplorer stored = new PropertiesExplorer("C:\\properties\\stored.properties");
+            explorer.store(new FileOutputStream(outputFile), null);
+            PropertiesExplorer stored = new PropertiesExplorer(outputFile);
 
             assert stored.getContent().size() == 6;
             assert stored.getContent().get("db.url").equals("localhost");
@@ -70,7 +73,7 @@ public class TestPropertiesExplorer {
     public void testKeys() {
         createProperties();
         try {
-            PropertiesExplorer explorer = new PropertiesExplorer("C:\\properties\\test.properties");
+            PropertiesExplorer explorer = new PropertiesExplorer(testFile);
 
             Set<String> correctSet = Set.of("db.url", "db.user", "db.password");
 
