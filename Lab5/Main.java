@@ -4,8 +4,10 @@ import java.io.OutputStream;
 import java.util.Properties;
 
 public class Main {
+    private static final String configFile = "C:\\properties\\config.properties";
+
     public static void main(String[] args) {
-        try (OutputStream output = new FileOutputStream("C:\\properties\\config.properties")) {
+        try (OutputStream output = new FileOutputStream(configFile)) {
             Properties prop = new Properties();
             prop.setProperty("db.url", "localhost");
             prop.setProperty("db.user", "viruskuls");
@@ -18,7 +20,7 @@ public class Main {
         }
 
         try {
-            PropertiesExplorer explorer = new PropertiesExplorer("C:\\properties\\config.properties");
+            PropertiesExplorer explorer = new PropertiesExplorer(configFile);
             System.out.println(explorer.getContent());
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
