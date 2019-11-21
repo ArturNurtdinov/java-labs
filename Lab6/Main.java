@@ -1,4 +1,6 @@
 import data.Bank;
+import data.BankConcurrent;
+import data.BankSynchronized;
 
 import java.io.*;
 import java.util.Random;
@@ -14,12 +16,20 @@ public class Main {
         }
 
         try {
+            System.out.println("With concurrent : ");
             generateData(args[0]);
-            Bank bank = new Bank(BANK_SIZE);
-            bank.executeTransfersFromFile(args[0]);
+            Bank bankConcurrent = new BankConcurrent(BANK_SIZE);
+            bankConcurrent.executeTransfersFromFile(args[0]);
             System.out.println("Bank info :");
-            bank.getAccountMap().forEach((key, value) -> System.out.println(key + ": " + value.getHolderName() + " " + value.getBalance()));
-            System.out.println("Invalid operations = " + bank.getInvalidOperations());
+            bankConcurrent.getAccountMap().forEach((key, value) -> System.out.println(key + ": " + value.getHolderName() + " " + value.getBalance()));
+            System.out.println("Not performed : " + bankConcurrent.getNotPerformedOperations());
+
+            System.out.println("With synchronized : ");
+            Bank bankSync = new BankSynchronized(BANK_SIZE);
+            bankSync.executeTransfersFromFile(args[0]);
+            System.out.println("Bank info :");
+            bankSync.getAccountMap().forEach((key, value) -> System.out.println(key + ": " + value.getHolderName() + " " + value.getBalance()));
+            System.out.println("Not performed : " + bankSync.getNotPerformedOperations());
         } catch (FileNotFoundException ex) {
             System.err.println("Could not open file : " + ex.getMessage());
         } catch (InterruptedException ex) {
