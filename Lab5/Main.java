@@ -1,12 +1,13 @@
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class Main {
-    private static final String configFile = "C:\\properties\\config.properties";
 
     public static void main(String[] args) {
+        final String configFile = Paths.get("config.properties").toAbsolutePath().toString();
         try (OutputStream output = new FileOutputStream(configFile)) {
             Properties prop = new Properties();
             prop.setProperty("db.url", "localhost");

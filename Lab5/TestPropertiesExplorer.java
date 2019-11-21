@@ -3,12 +3,13 @@ import org.junit.Test;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.Set;
 
 public class TestPropertiesExplorer {
-    private static final String testFile = "C:\\properties\\test.properties";
-    private static final String outputFile = "C:\\properties\\stored.properties";
+    private static final String testFile = Paths.get("test.properties").toAbsolutePath().toString();
+    private static final String outputFile = Paths.get("stored.properties").toAbsolutePath().toString();
 
     private void createProperties() {
         try (OutputStream output = new FileOutputStream(testFile)) {
