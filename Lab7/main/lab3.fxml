@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.Lab3Controller"
+      prefHeight="600.0" prefWidth="800.0"
+      alignment="TOP_CENTER"
+      spacing="20">
+
+    <HBox
+            alignment="TOP_CENTER"
+            spacing="10">
+        <Label text="string:"/>
+        <TextField
+                fx:id="input"/>
+        <Label text="index"/>
+        <TextField
+                fx:id="index"
+                maxWidth="40"/>
+
+    </HBox>
+
+    <HBox
+            spacing="10"
+            alignment="TOP_CENTER">
+        <Button
+                onAction="#append"
+                text="Append"/>
+        <Button
+                onAction="#clear"
+                text="Clear"/>
+        <Button
+                onAction="#deleteChar"
+                text="Delete char"/>
+        <Button
+                onAction="#reverse"
+                text="Reverse"/>
+        <Button
+                onAction="#undo"
+                text="Undo"/>
+
+
+    </HBox>
+
+    <Label
+            fx:id="output"/>
+
+</VBox>

@@ -17,6 +17,8 @@ public class MainController {
     @FXML
     private Button lab2Button;
     @FXML
+    private Button lab3Button;
+    @FXML
     private Button lab4Button;
     @FXML
     private Button lab5Button;
@@ -26,31 +28,29 @@ public class MainController {
     @FXML
     private void handleButtonClick(ActionEvent event) {
         if (event.getSource() == lab1Button) {
-            try {
-                Stage stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("lab1.fxml"));
-                stage.setTitle("Lab1");
-                stage.setScene(new Scene(root, 800, 600));
-                stage.show();
-            } catch (IOException ex) {
-                System.err.println(ex.getMessage());
-            }
+            createStage("Lab1", "lab1.fxml");
         } else if (event.getSource() == lab2Button) {
-            try {
-                Stage stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("lab2.fxml"));
-                stage.setTitle("Lab2");
-                stage.setScene(new Scene(root, 800, 600));
-                stage.show();
-            } catch (IOException ex) {
-                System.err.println(ex.getMessage());
-            }
+            createStage("Lab2", "lab2.fxml");
+        } else if (event.getSource() == lab3Button) {
+            createStage("Lab3", "lab3.fxml");
         } else if (event.getSource() == lab4Button) {
-            System.out.println("Lab 4");
+            createStage("Lab4", "lab4.fxml");
         } else if (event.getSource() == lab5Button) {
-            System.out.println("Lab 5");
+            createStage("Lab5", "lab5.fxml");
         } else if (event.getSource() == lab6Button) {
             System.out.println("Lab 6");
+        }
+    }
+
+    private void createStage(String title, String source) {
+        try {
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource(source));
+            stage.setTitle(title);
+            stage.setScene(new Scene(root, 800, 600));
+            stage.show();
+        } catch (IOException ex) {
+            System.err.println(ex.getMessage());
         }
     }
 }

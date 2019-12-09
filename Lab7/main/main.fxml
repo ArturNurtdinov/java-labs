@@ -16,6 +16,11 @@
             prefWidth="200"
             prefHeight="40"
             onAction="#handleButtonClick"/>
+    <Button fx:id="lab3Button"
+            text="Lab3"
+            prefWidth="200"
+            prefHeight="40"
+            onAction="#handleButtonClick"/>
     <Button fx:id="lab4Button"
             text="Lab4"
             prefWidth="200"
