@@ -4,24 +4,27 @@ import animals.Animal;
 import animals.Carnivore;
 import animals.Herbivore;
 import animals.Omnivore;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import main.Main;
-
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.ResourceBundle;
 
-public class Lab2Controller {
+public class Lab2Controller implements Initializable {
     @FXML
     Label animalsLabel;
 
     @FXML
     TextField animalId;
     @FXML
-    TextField type;
+    ComboBox<String> type;
     @FXML
     TextField name;
     @FXML
@@ -33,9 +36,14 @@ public class Lab2Controller {
 
     private ArrayList<Animal> animals = new ArrayList<>();
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        type.setItems(FXCollections.observableArrayList("carnivore", "herbivore", "omnivore"));
+    }
+
     @FXML
     private void addAnimal() {
-        switch (type.getText().toLowerCase()) {
+        switch (type.getEditor().getText().toLowerCase()) {
             case "carnivore":
                 animals.add(new Carnivore(name.getText(), animalId.getText(), foodType.getText(), Integer.parseInt(foodAmount.getText())));
                 break;
@@ -44,6 +52,13 @@ public class Lab2Controller {
                 break;
             case "omnivore":
                 animals.add(new Omnivore(name.getText(), animalId.getText(), foodType.getText(), Integer.parseInt(foodAmount.getText())));
+                break;
+            default:
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Unknown type");
+                alert.setHeaderText(null);
+                alert.setContentText("Unknown type, please use only CARNIVORE, HERBIVORE or OMNIVORE");
+                alert.showAndWait();
                 break;
         }
 
