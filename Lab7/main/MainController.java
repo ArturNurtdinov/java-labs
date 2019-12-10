@@ -38,7 +38,7 @@ public class MainController {
         } else if (event.getSource() == lab5Button) {
             createStage("Lab5", "lab5.fxml");
         } else if (event.getSource() == lab6Button) {
-            System.out.println("Lab 6");
+            createStage("Lab6", "lab6.fxml");
         }
     }
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Lab6Controller">
+    <children>
+        <VBox alignment="TOP_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="576.0" prefWidth="775.0">
+         <children>
+            <RadioButton mnemonicParsing="false" text="Use concurrent">
+               <toggleGroup>
+                  <ToggleGroup fx:id="use_type" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton mnemonicParsing="false" text="Use sync" toggleGroup="$use_type" />
+            <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="775.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="36.0" text="File:" />
+                  <TextField prefHeight="25.0" prefWidth="173.0" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+        </VBox>
+    </children>
+</AnchorPane>
