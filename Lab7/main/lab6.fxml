@@ -5,22 +5,33 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Lab6Controller">
     <children>
-        <VBox alignment="TOP_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="576.0" prefWidth="775.0">
-         <children>
-            <RadioButton mnemonicParsing="false" text="Use concurrent">
-               <toggleGroup>
-                  <ToggleGroup fx:id="use_type" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton mnemonicParsing="false" text="Use sync" toggleGroup="$use_type" />
-            <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="775.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="36.0" text="File:" />
-                  <TextField prefHeight="25.0" prefWidth="173.0" />
-               </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-         </children>
+        <VBox alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" prefHeight="576.0" prefWidth="775.0" spacing="10.0">
+            <children>
+                <VBox alignment="TOP_RIGHT" prefHeight="64.0" prefWidth="775.0">
+                    <children>
+                        <RadioButton fx:id="useConcurrent" mnemonicParsing="false" selected="true" text="Use concurrent">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="use_type" />
+                            </toggleGroup>
+                        </RadioButton>
+                        <RadioButton fx:id="useSync" mnemonicParsing="false" text="Use sync" toggleGroup="$use_type" />
+                        <HBox alignment="TOP_RIGHT" prefHeight="27.0" prefWidth="775.0">
+                            <children>
+                                <Label prefHeight="27.0" prefWidth="52.0" text="Accounts:" />
+                                <TextField fx:id="accounts" prefHeight="25.0" prefWidth="47.0" text="10" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+                <HBox alignment="BOTTOM_CENTER" prefHeight="34.0" prefWidth="775.0">
+                    <children>
+                        <Label prefHeight="17.0" prefWidth="36.0" text="File:" />
+                        <TextField fx:id="fileName" prefHeight="25.0" prefWidth="173.0" />
+                    </children>
+                </HBox>
+                <Button mnemonicParsing="false" onAction="#generateBank" prefHeight="25.0" prefWidth="77.0" text="Generate" />
+                <Label fx:id="output" />
+            </children>
         </VBox>
     </children>
 </AnchorPane>
