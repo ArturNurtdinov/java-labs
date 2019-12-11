@@ -1,12 +1,12 @@
 package controllers;
 
 import data.Bank;
+import data.BankAccount;
 import data.BankConcurrent;
 import data.BankSynchronized;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,7 +15,13 @@ import java.util.Random;
 
 public class Lab6Controller {
     @FXML
-    Label output;
+    Label notPerformed;
+    @FXML
+    TableView<BankAccount> outputTable;
+    @FXML
+    TableColumn<?, ?> nameCol;
+    @FXML
+    TableColumn<?, ?> balanceCol;
     @FXML
     TextField accounts;
     @FXML
@@ -29,43 +35,28 @@ public class Lab6Controller {
     private void generateBank() {
         try {
             generateData(fileName.getText());
+            nameCol.setCellValueFactory(new PropertyValueFactory<>("holderName"));
+            balanceCol.setCellValueFactory(new PropertyValueFactory<>("balance"));
+            outputTable.getItems().clear();
 
             if (useConcurrent.isSelected()) {
                 Bank bank = new BankConcurrent(Integer.parseInt(accounts.getText()));
                 bank.executeTransfersFromFile(fileName.getText());
-                StringBuilder sb = new StringBuilder();
-                bank.getAccountMap().forEach((key, value) -> {
-                    sb.append(key);
-                    sb.append(": ");
-                    sb.append(value.getHolderName());
-                    sb.append(" ");
-                    sb.append(value.getBalance());
-                    sb.append('\n');
-                });
-                sb.append("Not perfomed: ");
-                sb.append(bank.getNotPerformedOperations());
-
-                output.setText(sb.toString());
+                bank.getAccountMap().values().forEach((it) -> outputTable.getItems().add(it));
+                notPerformed.setText("Not performed: " + bank.getNotPerformedOperations());
             } else {
                 Bank bank = new BankSynchronized(Integer.parseInt(accounts.getText()));
                 bank.executeTransfersFromFile(fileName.getText());
-                StringBuilder sb = new StringBuilder();
-                bank.getAccountMap().forEach((key, value) -> {
-                    sb.append(key);
-                    sb.append(": ");
-                    sb.append(value.getHolderName());
-                    sb.append(" ");
-                    sb.append(value.getBalance());
-                    sb.append('\n');
-                });
-                sb.append("Not perfomed: ");
-                sb.append(bank.getNotPerformedOperations());
-
-                output.setText(sb.toString());
+                bank.getAccountMap().values().forEach((it) -> outputTable.getItems().add(it));
+                notPerformed.setText("Not performed: " + bank.getNotPerformedOperations());
             }
 
         } catch (Exception ex) {
-            output.setText(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Invalid index");
+            alert.setHeaderText(null);
+            alert.setContentText("Please type correct index");
+            alert.showAndWait();
         }
     }
 
