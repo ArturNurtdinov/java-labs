@@ -30,7 +30,17 @@
                     </children>
                 </HBox>
                 <Button mnemonicParsing="false" onAction="#generateBank" prefHeight="25.0" prefWidth="77.0" text="Generate" />
-                <Label fx:id="output" />
+                <HBox prefHeight="400.0" prefWidth="775.0">
+                    <children>
+                        <TableView fx:id="outputTable" prefHeight="397.0" prefWidth="791.0">
+                            <columns>
+                                <TableColumn fx:id="nameCol" prefWidth="314.99998474121094" text="Name" />
+                                <TableColumn fx:id="balanceCol" prefWidth="459.0" text="Balance" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </HBox>
+            <Label fx:id="notPerformed" />
             </children>
         </VBox>
     </children>
