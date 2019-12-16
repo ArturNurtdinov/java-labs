@@ -21,6 +21,7 @@ public final class Task3 implements TaskContract.Task3 {
         System.out.println("Type 7 to update book");
         System.out.println("Type 8 to read book by index");
         System.out.println("Type 9 to print all books");
+        System.out.println("Type 0 to exit");
         BookList books = new BookList();
         while (true) {
             int code = this.readCode();
@@ -73,8 +74,11 @@ public final class Task3 implements TaskContract.Task3 {
                     books.printBooks();
                     System.out.println("Done! Next command: ");
                     break;
+                case 0:
+                    System.exit(0);
                 default:
-                    throw new IllegalArgumentException("Unknown code");
+                    System.out.println("Unknown command!");
+                    break;
             }
         }
     }

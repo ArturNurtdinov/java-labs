@@ -49,7 +49,7 @@ public class Main {
             consumer.accept(list.get(i));
         }
     }
-
+    
     private static void writeToFile(List<Animal> list, String filename) throws IOException {
         ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
         oos.writeObject(list);
