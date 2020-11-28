@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml"
+         fx:controller="controllers.Lab1Controller"
+         prefHeight="600" prefWidth="800">
+    <Tab text="Task1">
+        <VBox
+                alignment="TOP_CENTER"
+                spacing="30">
+            <Button
+                    text="Create matrix"
+                    onAction="#createMatrix"/>
+            <Label fx:id="labelForMatrix"/>
+        </VBox>
+    </Tab>
+
+    <Tab text="Task2">
+        <VBox
+                alignment="TOP_CENTER"
+                spacing="30">
+            <TextField
+                    fx:id="string"
+                    maxWidth="200"/>
+            <Button text="Split string"
+                    onAction="#splitString"/>
+            <Label fx:id="labelForString"/>
+        </VBox>
+
+    </Tab>
+
+    <Tab text="Task3">
+        <VBox alignment="TOP_CENTER">
+            <Button text="Start console menu" onAction="#startMenu"/>
+        </VBox>
+    </Tab>
+</TabPane>

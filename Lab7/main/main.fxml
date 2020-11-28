@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="center" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal"
+      fx:controller="main.MainController"
+      spacing="10">
+    <Button fx:id="lab1Button"
+            text="Lab1"
+            prefWidth="200"
+            prefHeight="40"
+            onAction="#handleButtonClick"/>
+    <Button fx:id="lab2Button"
+            text="Lab2"
+            prefWidth="200"
+            prefHeight="40"
+            onAction="#handleButtonClick"/>
+    <Button fx:id="lab3Button"
+            text="Lab3"
+            prefWidth="200"
+            prefHeight="40"
+            onAction="#handleButtonClick"/>
+    <Button fx:id="lab4Button"
+            text="Lab4"
+            prefWidth="200"
+            prefHeight="40"
+            onAction="#handleButtonClick"/>
+    <Button fx:id="lab5Button"
+            text="Lab5"
+            prefWidth="200"
+            prefHeight="40"
+            onAction="#handleButtonClick"/>
+    <Button fx:id="lab6Button"
+            text="Lab6"
+            prefWidth="200"
+            prefHeight="40"
+            onAction="#handleButtonClick"/>
+</VBox>

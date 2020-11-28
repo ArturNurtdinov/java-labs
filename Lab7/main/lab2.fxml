@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.Lab2Controller"
+      prefHeight="600" prefWidth="800"
+      alignment="TOP_CENTER"
+      spacing="10">
+
+    <VBox
+            alignment="TOP_CENTER"
+            spacing="10">
+        <Label text="id:"/>
+        <TextField
+                fx:id="animalId"
+                maxWidth="150"/>
+        <Label text="type:"/>
+        <ComboBox
+                editable="true"
+                fx:id="type"
+                maxWidth="150"/>
+        <Label text="name:"/>
+        <TextField
+                fx:id="name"
+                maxWidth="150"/>
+        <Label text="food:"/>
+        <TextField
+                fx:id="foodType"
+                maxWidth="150"/>
+        <Label text="amount:"/>
+        <TextField
+                fx:id="foodAmount"
+                maxWidth="150"/>
+    </VBox>
+
+    <HBox spacing="10"
+          alignment="TOP_CENTER">
+        <Button text="Add"
+                onAction="#addAnimal"/>
+        <Button text="Clear"
+                onAction="#clearList"/>
+        <Button text="Sort"
+                onAction="#sortList"/>
+    </HBox>
+
+    <HBox
+            spacing="10"
+            alignment="TOP_CENTER">
+        <Button text="Load from file"
+                onAction="#loadFromFile"/>
+        <Button text="Print to file"
+                onAction="#printToFile"/>
+    </HBox>
+
+    <HBox
+            alignment="TOP_CENTER">
+        <Label text="File:"/>
+        <TextField
+                fx:id="fileName"
+                maxWidth="300"/>
+    </HBox>
+
+    <Label
+            fx:id="animalsLabel"/>
+
+</VBox>
